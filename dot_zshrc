@@ -79,7 +79,11 @@ ZSH_THEME="spaceship"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	asdf
+<<<<<<< HEAD
     	fzf
+=======
+    fzf
+>>>>>>> 439663c (Replaced lsd whith exa)
 	git
     	helm
     	zsh-kitty
