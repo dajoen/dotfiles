@@ -118,5 +118,5 @@ source $ZSH/oh-my-zsh.sh
 alias ls="exa --icons --long --group-directories-first --git"
 
 eval "$(starship init zsh)"
-
+test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
