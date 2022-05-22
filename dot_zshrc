@@ -79,6 +79,7 @@ ZSH_THEME="spaceship"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	asdf
+    fzf
 	git
     helm
     zsh-kitty
@@ -114,7 +115,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias ls="lsd"
+alias ls="exa --icons --long --group-directories-first --git"
 
 eval "$(starship init zsh)"
 
