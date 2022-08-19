@@ -80,13 +80,13 @@ ZSH_THEME="spaceship"
 plugins=(
 	  asdf
 	  git
-    helm
-    zsh-kitty
+      helm
+      zsh-kitty
 	  kubectl
-    zoxide
-    zsh-autosuggestions
-    zsh-syntax-highlighting
-	)
+      zoxide
+      zsh-autosuggestions
+      zsh-syntax-highlighting
+	  )
 
 source $ZSH/oh-my-zsh.sh
 
@@ -120,3 +120,5 @@ alias ls="exa --git --icons --long --group-directories-first"
 eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export PATH="$PATH:/Users/jeroenverhoeven/.krew/bin"
