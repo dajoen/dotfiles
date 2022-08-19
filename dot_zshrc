@@ -121,4 +121,5 @@ eval "$(starship init zsh)"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
+export GPG_TTY=$(tty)
 export PATH="$PATH:/Users/jeroenverhoeven/.krew/bin"
