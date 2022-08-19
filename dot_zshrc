@@ -80,10 +80,14 @@ ZSH_THEME="spaceship"
 plugins=(
 	asdf
 <<<<<<< HEAD
+<<<<<<< HEAD
     	fzf
 =======
     fzf
 >>>>>>> 439663c (Replaced lsd whith exa)
+=======
+    	fzf
+>>>>>>> 6f34d02 (Added zoxide)
 	git
     	helm
     	zsh-kitty
