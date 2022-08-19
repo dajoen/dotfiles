@@ -99,11 +99,13 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='vim'
+else
+  export EDITOR='nvim'
+fi
+
+export VISUAL=${EDITOR}
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -121,3 +123,4 @@ alias ls="exa --icons --long --group-directories-first --git"
 eval "$(starship init zsh)"
 test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="${PATH}:${HOME}/.krew/bin"
