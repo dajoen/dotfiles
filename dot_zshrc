@@ -79,22 +79,17 @@ ZSH_THEME="spaceship"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	asdf
-<<<<<<< HEAD
-<<<<<<< HEAD
-    	fzf
-=======
+    brew
+    flutter
     fzf
->>>>>>> 439663c (Replaced lsd whith exa)
-=======
-    	fzf
->>>>>>> 6f34d02 (Added zoxide)
 	git
-    	helm
-    	zsh-kitty
+    gpg-agent
+    helm
+    zsh-kitty
 	kubectl
-    	zsh-autosuggestions
-    	zsh-syntax-highlighting
-        zoxide
+    zsh-autosuggestions
+    zsh-syntax-highlighting
+    zoxide
 	)
 
 source $ZSH/oh-my-zsh.sh
