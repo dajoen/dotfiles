@@ -126,4 +126,6 @@ alias ls="exa --icons --long --group-directories-first --git"
 eval "$(starship init zsh)"
 test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="${PATH}:${HOME}/.krew/bin"
+path+=("${HOME}/.krew/bin")
+path+=("${HOME}/.local/bin")
+export PATH
