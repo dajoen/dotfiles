@@ -79,14 +79,14 @@ ZSH_THEME="spaceship"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
 	  asdf
-    docker
 	  git
-    helm
-    zsh-kitty
+      gpg-agent
+      helm
+      zsh-kitty
 	  kubectl
-    zoxide
-    zsh-autosuggestions
-    zsh-syntax-highlighting
+      zoxide
+      zsh-autosuggestions
+      zsh-syntax-highlighting
 	  )
 
 source $ZSH/oh-my-zsh.sh
@@ -124,3 +124,6 @@ eval "$(starship init zsh)"
 
 export GPG_TTY=$(tty)
 export PATH="$PATH:/Users/jeroenverhoeven/.krew/bin"
+
+# The next line updates PATH for Netlify's Git Credential Helper.
+test -f '/Users/jeroenverhoeven/Library/Preferences/netlify/helper/path.zsh.inc' && source '/Users/jeroenverhoeven/Library/Preferences/netlify/helper/path.zsh.inc'
