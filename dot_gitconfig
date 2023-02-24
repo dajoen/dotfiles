@@ -1,0 +1,28 @@
+[user]
+	email = jeroen.verhoeven@dephion.com
+	name = Jeroen Verhoeven
+	signingkey = C37D12DBF461846498B796DCA902A5CAA464CABE
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = false
+[init]
+	defaultBranch = main
+[credential]
+	credentialStore = gpg
+	helper = /usr/local/share/gcm-core/git-credential-manager
+[credential "https://dev.azure.com"]
+	useHttpPath = true
+[credential "azrepos:org/hwbg"]
+	username = jeroen.verhoeven@dephion.com
+[commit]
+	gpgsign = true
+[advice]
+	detachedHead = false
+
+# This next lines include Netlify's Git Credential Helper configuration in your Git configuration.
+[include]
+  path = /Users/jeroenverhoeven/Library/Preferences/netlify/helper/git-config
