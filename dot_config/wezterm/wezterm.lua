@@ -5,7 +5,7 @@ return {
     color_scheme = 'nord',
     use_fancy_tab_bar = true,
     window_decorations = "RESIZE",
-    window_background_image = '/Users/jeroenverhoeven/.config/wezterm/apple_black.jpg',
+    window_background_image = '/Users/jeroenverhoeven/.config/wezterm/unix.jpg',
     window_background_hsb = {
         brightness = 0.3,
         hue = 0.7,
