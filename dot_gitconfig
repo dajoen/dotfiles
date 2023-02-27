@@ -1,7 +1,7 @@
 [user]
-	email = jeroen.verhoeven@dephion.com
+	email = jeroen@joentje.org
 	name = Jeroen Verhoeven
-	signingkey = C37D12DBF461846498B796DCA902A5CAA464CABE
+	signingkey = FEBA5692B5EB42F72173A24442F5A1E48182CD47
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
