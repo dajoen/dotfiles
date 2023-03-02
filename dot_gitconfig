@@ -12,17 +12,14 @@
 [init]
 	defaultBranch = main
 [credential]
-	credentialStore = gpg
-	helper = /usr/local/share/gcm-core/git-credential-manager
-[credential "https://dev.azure.com"]
-	useHttpPath = true
-[credential "azrepos:org/hwbg"]
-	username = jeroen.verhoeven@dephion.com
+	credentialStore = keychain
+	helper = 
+	helper = /usr/local/bin/git-credential-manager
 [commit]
 	gpgsign = true
 [advice]
 	detachedHead = false
-
-# This next lines include Netlify's Git Credential Helper configuration in your Git configuration.
-[include]
-  path = /Users/jeroenverhoeven/Library/Preferences/netlify/helper/git-config
+[credential "azrepos:org/hwbg"]
+	username = jeroen.verhoeven@dephion.com
+[credential "https://dev.azure.com"]
+	useHttpPath = true
