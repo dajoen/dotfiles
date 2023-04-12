@@ -1,0 +1,29 @@
+# The following lines were added by compinstall
+
+zstyle ':completion:*' completer _complete _ignored
+zstyle :compinstall filename '/home/jeroen/.zshrc'
+
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+# Lines configured by zsh-newuser-install
+bindkey -e
+# End of lines configured by zsh-newuser-install
+bindkey -v
+export KEYTIMEOUT=1
+source $ZDOTDIR/aliases
+
+eval "$(starship init zsh)"
+eval "$(zoxide init zsh)"
+test -r "~/.dir_colors" && eval $(dircolors ~/.dir_colors)
+
+# Enable ASDF
+. "$HOME/.asdf/asdf.sh"
+
+# Enable syntax highlighting
+. /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Make rust work
+export PATH="$HOME/.cargo/bin:$PATH"
+# Start new shell in zellij session
+eval "$(zellij setup --generate-auto-start zsh)"
