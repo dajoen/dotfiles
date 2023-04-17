@@ -2,11 +2,6 @@
 	email = jeroen@joentje.org
 	name = Jeroen Verhoeven
 	signingkey = FEBA5692B5EB42F72173A24442F5A1E48182CD47
-[filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
 [pull]
 	rebase = false
 [init]
@@ -23,3 +18,10 @@
 	username = jeroen.verhoeven@dephion.com
 [credential "https://dev.azure.com"]
 	useHttpPath = true
+[filter "lfs"]
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+	clean = git-lfs clean -- %f
+[credential "https://git.joentje.org"]
+	username = jeroen

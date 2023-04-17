@@ -7,9 +7,9 @@ return {
     window_decorations = "RESIZE",
     window_background_image = '/Users/jeroenverhoeven/.config/wezterm/unix.jpg',
     window_background_image_hsb = {
-        brightness = 0.3,
-        hue = 0.7,
-        saturation = 0.3,
+        brightness = 0.1,
+        hue = 0.3,
+        saturation = 0.9,
     },
     window_background_opacity = 0.90,
     keys = {
