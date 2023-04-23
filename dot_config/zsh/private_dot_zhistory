@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 ls -la
 cat .zprofile
 mkdir .config/zsh
@@ -660,3 +661,168 @@ exit
 exit
 ls -la
 exit
+=======
+gh
+nvim .config/starship.toml
+starhsip
+starship
+sudo dnf upgrade
+starship print-config
+man starship
+starship --help
+ls .config/starship.toml
+rm -rf .local/share/zap
+ls -la 
+ls -la | grep zap
+find . -name 'starship.toml' 
+sudo dnf search fd
+sudo dnf install fd-find
+fd starship.toml
+fd
+fd --help
+tldr fdd
+tldr fd
+fd "starship.toml" 
+fd "starship.*" 
+cat .config/starship.toml
+fd --hidden "starship.toml" 
+cat .local/share/chezmoi/dot_config/starship.toml
+starship config
+starship explain
+bat
+dnf search dust
+dnf search du-dust
+cargo install --locked dust
+cargo install --locked du-dust
+sudo dnf install ripgrep
+rg PATG .*
+asdf
+asdf list
+chezmoi
+la
+ll
+tree
+ls --tree
+ls -l --tree
+rm -rf Downloads/FiraCode
+rm -rf Downloads/bw-linux-2023.3.0.zip
+rm -rf Downloads/FiraCode.zip
+rm -rf .logseq
+rm -rf .npm
+rm -rf .rustup
+cargo 
+rustc
+cargo uninstall du-dust
+cargo uninstall dust
+cargo clean
+cargo cache
+cargo --list
+cargo install cargo-cache
+nvim .profile
+path+=('/home/jeroen/.cargo/bin')
+cargo-cache
+cargo-cache clean
+cargo-cache --help
+cargo-cache -a
+cargo install du-dust
+z $ZDOTDIR
+rg PATH *.*
+rg PATH *
+rg PATH .*
+nvim .zshrc
+sudo dnf install golang
+sudo dnf search powerline
+sudo dnf search awesome
+ls .cargo/bin
+cargo install duf
+which wezterm
+flatpak update
+sudo dnf search console
+sudo dnf install thefuck
+sudo dnf install -y https://github.com/wez/wezterm/releases/download/20230408-112425-69ae8472/wezterm-20230408_112425_69ae8472-1.fedora37.x86_64.rpm
+flatpak list
+flatpak remove wezterm
+git clone --filter=blob:none --sparse git@github.com:ryanoasis/nerd-fonts
+ls -a
+z nerd-fonts
+./install.sh
+ls /home/jeroen/work/nerd-fonts/patched-fonts
+z ..
+rm -rf nerd-fonts
+ll .local/share/fonts
+ll .local/share/fonts/NerdFonts
+z Downloads
+curl -OL https://github.com/ryanoasis/nerd-fonts/releases/download/v2.3.3/FiraCode.zip
+unzip FiraCode.zip -d ~/.local/share/fonts
+fc-cache ~/.local/share/fonts
+nvim .config/wezterm/wezterm.lua
+ls -la --icons
+exa --help
+lk
+ll -a --icons
+z testproject
+sudo dnf install jq
+jq
+sudo dnf install k9s
+# NOTE: The dev version will be in effect!\
+go install github.com/derailed/k9s@latest
+fd k9s
+fd --hidden k9s
+btop
+shell-genie
+nvim .config/zsh/.zshrc
+which duf
+cargo uninstall duf
+gh repo clone muesli/duf
+export GOPATH=$HOME/go
+go env GOPATH
+z -
+go install
+bat README.md
+dnf search rtx
+go
+go clean
+go build
+cd go
+cd bin
+./duf
+./k9s
+z
+path+=$GOPATH
+dnf search alacritty
+sudo dnf install alacritty
+sudo dnf check-update
+mkdir .config/alacritty
+alacritty --help
+curl https://raw.githubusercontent.com/alacritty/alacritty/master/alacritty.yml > .config/alacritty/alacritty.yml
+zellij
+ll -a
+nvim .zshenv
+nvim .config/alacritty/alacritty.yml
+source .zshenv
+env | grep PATH
+dus
+dust
+k9s
+dnf search minikube
+curl https://rtx.pub/install.sh | sh
+zimfw update
+rtx
+which rtx
+nvim .config/zsh/.zimrc
+zimfw install
+cat .profile
+duf
+z work
+sudo dnf remove wezterm
+z duf
+git pull
+chezmoi cd
+cd dot_config
+ls -la
+exit
+: 1682248643:0;chezmoi add .zshenv
+: 1682248647:0;z
+: 1682248650:0;chezmoi add .zshenv
+: 1682248665:0;chezmoi add .config/zsh
+>>>>>>> 35c547b (Added zimfs)
