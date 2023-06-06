@@ -13,6 +13,12 @@ success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set
 disabled = true
 symbol = " "
 
+[azure]
+disabled = false
+format = 'on [$symbol($subscription)]($style) '
+symbol = '󰠅 '
+style = 'blue bold'
+
 [kubernetes]
 format = 'on [⛵ ($user on )($cluster in )$context \($namespace\)](dimmed green) '
 disabled = false
