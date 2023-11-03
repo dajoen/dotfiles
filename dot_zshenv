@@ -1,9 +1,5 @@
 #!/usr/bin/env zsh
 
-# Shell
-
-export SHELL="/home/linuxbrew/.linuxbrew/bin/zsh"
-
 # XDG
 export XDG_CONFIG_HOME="$HOME/.config"
 export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
@@ -25,6 +21,10 @@ export GOPATH=$HOME/go
 path+=$GOPATH/bin
 # Add support for rust
 path+=$HOME/.cargo/bin
+# Add .local/bin to path
+path+=$HOME/.local/bin
 
 eval "$(rtx activate zsh)"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+BAT_THEME=Nord
+RESTIC_PASSWORD_COMMAND="gopass cat backup_btc"
