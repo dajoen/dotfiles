@@ -1,0 +1,109 @@
+name: Matrix Testing
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:  # Allow manual triggering
+  schedule:
+    - cron: '0 0 * * 0'  # Run weekly on Sundays
+
+jobs:
+  test-matrix:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, ubuntu-22.04, macos-latest, macos-13]
+        include:
+          - os: ubuntu-latest
+            package_manager: apt
+          - os: ubuntu-22.04
+            package_manager: apt
+          - os: macos-latest
+            package_manager: brew
+          - os: macos-13
+            package_manager: brew
+      fail-fast: false  # Continue with other tests if one fails
+
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install chezmoi (apt)
+        if: matrix.package_manager == 'apt'
+        run: |
+          sudo apt update
+          sudo apt install -y curl
+          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
+          export PATH=$PATH:$HOME/.local/bin
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          chezmoi --version
+
+      - name: Install chezmoi (brew)
+        if: matrix.package_manager == 'brew'
+        run: |
+          brew install chezmoi
+          chezmoi --version
+
+      - name: Apply dotfiles
+        run: |
+          chezmoi init $GITHUB_WORKSPACE
+          chezmoi diff
+          chezmoi apply --verbose
+
+      - name: Install required packages (apt)
+        if: matrix.package_manager == 'apt'
+        run: |
+          sudo apt update
+          sudo apt install -y zsh
+
+      - name: Make test script executable
+        run: chmod +x $GITHUB_WORKSPACE/.github/scripts/test-config.sh
+
+      - name: Run configuration tests
+        run: $GITHUB_WORKSPACE/.github/scripts/test-config.sh
+
+  test-containers:
+    strategy:
+      matrix:
+        container: ['fedora:latest', 'fedora:37', 'ubuntu:latest', 'ubuntu:22.04', 'debian:latest']
+      fail-fast: false
+
+    runs-on: ubuntu-latest
+    container: ${{ matrix.container }}
+    steps:
+      - name: Install base dependencies
+        run: |
+          if command -v dnf > /dev/null 2>&1; then
+            dnf install -y git curl zsh
+          elif command -v apt > /dev/null 2>&1; then
+            apt update && apt install -y git curl zsh
+          fi
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install chezmoi (dnf)
+        if: contains(matrix.container, 'fedora')
+        run: |
+          dnf install -y chezmoi
+          chezmoi --version
+
+      - name: Install chezmoi (apt)
+        if: contains(matrix.container, 'ubuntu') || contains(matrix.container, 'debian')
+        run: |
+          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+          chezmoi --version
+
+      - name: Apply dotfiles
+        run: |
+          chezmoi init $GITHUB_WORKSPACE
+          chezmoi diff
+          chezmoi apply --verbose
+
+      - name: Make test script executable
+        run: chmod +x $GITHUB_WORKSPACE/.github/scripts/test-config.sh
+
+      - name: Run configuration tests
+        run: $GITHUB_WORKSPACE/.github/scripts/test-config.sh

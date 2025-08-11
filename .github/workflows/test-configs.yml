@@ -1,0 +1,94 @@
+name: Test Dotfiles Configuration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  test-ubuntu:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install chezmoi
+        run: |
+          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b $HOME/.local/bin
+          export PATH=$PATH:$HOME/.local/bin
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          chezmoi --version
+
+      - name: Apply dotfiles
+        run: |
+          chezmoi init $GITHUB_WORKSPACE
+          chezmoi diff
+          chezmoi apply --verbose
+
+      - name: Install required packages
+        run: |
+          sudo apt update
+          sudo apt install -y zsh
+
+      - name: Make test script executable
+        run: chmod +x $GITHUB_WORKSPACE/.github/scripts/test-config.sh
+
+      - name: Run configuration tests
+        run: $GITHUB_WORKSPACE/.github/scripts/test-config.sh
+
+  test-fedora:
+    runs-on: ubuntu-latest
+    container: fedora:latest
+    steps:
+      - name: Install git and curl
+        run: |
+          dnf install -y git curl
+
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install chezmoi
+        run: |
+          dnf install -y chezmoi
+          chezmoi --version
+
+      - name: Apply dotfiles
+        run: |
+          chezmoi init $GITHUB_WORKSPACE
+          chezmoi diff
+          chezmoi apply --verbose
+
+      - name: Install required packages
+        run: |
+          dnf install -y zsh
+
+      - name: Make test script executable
+        run: chmod +x $GITHUB_WORKSPACE/.github/scripts/test-config.sh
+
+      - name: Run configuration tests
+        run: $GITHUB_WORKSPACE/.github/scripts/test-config.sh
+
+  test-macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install chezmoi
+        run: |
+          brew install chezmoi
+          chezmoi --version
+
+      - name: Apply dotfiles
+        run: |
+          chezmoi init $GITHUB_WORKSPACE
+          chezmoi diff
+          chezmoi apply --verbose
+
+      - name: Make test script executable
+        run: chmod +x $GITHUB_WORKSPACE/.github/scripts/test-config.sh
+
+      - name: Run configuration tests
+        run: $GITHUB_WORKSPACE/.github/scripts/test-config.sh

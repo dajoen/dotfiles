@@ -1,0 +1,57 @@
+name: Test WSL Configuration
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:  # Allow manual triggering
+
+jobs:
+  test-wsl:
+    runs-on: ubuntu-latest
+    container: ubuntu:latest
+    steps:
+      - name: Set up WSL-like environment
+        run: |
+          apt update
+          apt install -y git curl zsh sudo procps
+
+      - name: Emulate WSL environment variables
+        run: |
+          echo "WSL_DISTRO_NAME=Ubuntu" >> $GITHUB_ENV
+          echo "WSL_INTEROP=/run/WSL/1234_interop" >> $GITHUB_ENV
+          echo "WSLENV=TERM:WT_SESSION" >> $GITHUB_ENV
+          
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Install chezmoi
+        run: |
+          sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+          chezmoi --version
+
+      - name: Apply dotfiles
+        run: |
+          chezmoi init $GITHUB_WORKSPACE
+          # Add WSL-specific data to chezmoi data
+          mkdir -p ~/.config/chezmoi
+          echo '{"wsl": true}' > ~/.config/chezmoi/chezmoi.json
+          chezmoi diff
+          chezmoi apply --verbose
+
+      - name: Make test script executable
+        run: chmod +x $GITHUB_WORKSPACE/.github/scripts/test-config.sh
+
+      - name: Run configuration tests
+        run: $GITHUB_WORKSPACE/.github/scripts/test-config.sh
+
+      - name: Additional WSL-specific tests
+        run: |
+          # Add any WSL-specific tests here
+          if zsh -c 'source ~/.zshenv && source ~/.zshrc && echo $WSL_DISTRO_NAME' | grep -q "Ubuntu"; then
+            echo "✓ WSL environment detected correctly"
+          else
+            echo "✗ WSL environment not detected"
+            exit 1
+          fi

@@ -118,6 +118,22 @@ chezmoi diff --exclude=encrypted
 ## Contributing
 Branch, keep scripts minimal, document platform assumptions.
 
+## CI/CD
+
+This repository uses GitHub Actions to automatically test the dotfiles configuration across multiple operating systems and environments:
+
+- **Basic Tests**: Tests the configuration on Ubuntu, Fedora, and macOS
+- **Matrix Tests**: Tests on multiple versions of Ubuntu, macOS, Fedora, and Debian
+- **WSL Tests**: Tests specifically for Ubuntu WSL compatibility
+
+The CI pipeline validates that:
+- All essential configuration files are created correctly
+- ZSH configuration loads without errors
+- Tool-specific configurations are valid
+- Required tools are available
+
+To run the tests manually, trigger the workflows from the GitHub Actions tab.
+
 ## License
 MIT (adjust if needed)
 
