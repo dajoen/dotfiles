@@ -4,9 +4,9 @@
 
 # Log colour scheme has bold yellow commit hash, bold blue author, cyan date, auto ref names
 # See https://git-scm.com/docs/pretty-formats
-typeset -g _git_log_fuller_format='%C(bold yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(blue)%an <%ae> %C(reset)%C(cyan)%ai (%ar)%n%C(bold)Commit: %C(blue)%cn <%ce> %C(reset)%C(cyan)%ci (%cr)%C(reset)%n%+B'
+typeset -g _git_log_fuller_format='%C(bold yellow)commit %H%C(auto)%d%n%C(bold)Author: %C(blue)%an <%ae> %C(cyan)%ai (%ar)%n%C(bold)Commit: %C(blue)%cn <%ce> %C(cyan)%ci (%cr)%C(reset)%n%+B'
 typeset -g _git_log_oneline_format='%C(bold yellow)%h%C(reset) %s%C(auto)%d%C(reset)'
-typeset -g _git_log_oneline_medium_format='%C(bold yellow)%h%C(reset) %<(50,trunc)%s %C(bold blue)<%an> %C(reset)%C(cyan)(%ar)%C(auto)%d%C(reset)'
+typeset -g _git_log_oneline_medium_format='%C(bold yellow)%h%C(reset) %<(50,trunc)%s %C(bold blue)%an %C(cyan)%as (%ar)%C(auto)%d%C(reset)'
 local gmodule_home=${0:A:h}
 
 #
@@ -23,8 +23,9 @@ alias ${gprefix}='git'
 alias ${gprefix}b='git branch'
 alias ${gprefix}bc='git checkout -b'
 alias ${gprefix}bd='git checkout --detach'
-alias ${gprefix}bl='git branch -vv'
-alias ${gprefix}bL='git branch --all -vv'
+alias ${gprefix}bl='git branch --list -vv'
+alias ${gprefix}bL='git branch --list -vv --all'
+alias ${gprefix}bn='git branch --no-contains'
 alias ${gprefix}bm='git branch --move'
 alias ${gprefix}bM='git branch --move --force'
 alias ${gprefix}bR='git branch --force'
@@ -55,7 +56,7 @@ alias ${gprefix}cU='git commit --squash'
 alias ${gprefix}cv='git verify-commit'
 
 # Conflict (C)
-alias ${gprefix}Cl='git --no-pager diff --diff-filter=U --name-only'
+alias ${gprefix}Cl='git --no-pager diff --name-only --diff-filter=U'
 alias ${gprefix}Ca="git add \$(${gprefix}Cl)"
 alias ${gprefix}Ce="git mergetool \$(${gprefix}Cl)"
 alias ${gprefix}Co='git checkout --ours --'
@@ -70,7 +71,8 @@ alias ${gprefix}dx='git ls-files --deleted'
 alias ${gprefix}dm='git ls-files --modified'
 alias ${gprefix}du='git ls-files --other --exclude-standard'
 alias ${gprefix}dk='git ls-files --killed'
-alias ${gprefix}di='git status --porcelain --short --ignored | sed -n "s/^!! //p"'
+alias ${gprefix}di='git status --porcelain --ignored=matching | sed -n "s/^!! //p"'
+alias ${gprefix}dI='git ls-files --ignored --exclude-per-directory=.gitignore --cached'
 
 # Fetch (f)
 alias ${gprefix}f='git fetch'
@@ -89,10 +91,15 @@ alias ${gprefix}gL='git grep --files-without-match'
 alias ${gprefix}gv='git grep --invert-match'
 alias ${gprefix}gw='git grep --word-regexp'
 
+# Help (h)
+alias ${gprefix}h='git help'
+alias ${gprefix}hw='git help --web'
+
 # Index (i)
-alias ${gprefix}ia='git add'
+alias ${gprefix}ia='git add --verbose'
 alias ${gprefix}iA='git add --patch'
-alias ${gprefix}iu='git add --update'
+alias ${gprefix}iu='git add --verbose --update'
+alias ${gprefix}iU='git add --verbose --all'
 alias ${gprefix}id='git diff --no-ext-diff --cached'
 alias ${gprefix}iD='git diff --no-ext-diff --cached --word-diff'
 alias ${gprefix}ir='git reset'
@@ -101,15 +108,15 @@ alias ${gprefix}ix='git rm --cached -r'
 alias ${gprefix}iX='git rm --cached -rf'
 
 # Log (l)
-alias ${gprefix}l='git log --topo-order --pretty=format:"${_git_log_fuller_format}"'
-alias ${gprefix}ls='git log --topo-order --stat --pretty=format:"${_git_log_fuller_format}"'
-alias ${gprefix}ld='git log --topo-order --stat --patch --pretty=format:"${_git_log_fuller_format}"'
-alias ${gprefix}lf='git log --topo-order --stat --patch --follow --pretty=format:"${_git_log_fuller_format}"'
-alias ${gprefix}lo='git log --topo-order --pretty=format:"${_git_log_oneline_format}"'
-alias ${gprefix}lO='git log --topo-order --pretty=format:"${_git_log_oneline_medium_format}"'
-alias ${gprefix}lg='git log --graph --pretty=format:"${_git_log_oneline_format}"'
-alias ${gprefix}lG='git log --graph --pretty=format:"${_git_log_oneline_medium_format}"'
-alias ${gprefix}lv='git log --topo-order --show-signature --pretty=format:"${_git_log_fuller_format}"'
+alias ${gprefix}l='git log --date-order --pretty=format:"${_git_log_fuller_format}"'
+alias ${gprefix}ls='git log --date-order --stat --pretty=format:"${_git_log_fuller_format}"'
+alias ${gprefix}ld='git log --date-order --stat --patch --pretty=format:"${_git_log_fuller_format}"'
+alias ${gprefix}lf='git log --date-order --stat --patch --follow --pretty=format:"${_git_log_fuller_format}"'
+alias ${gprefix}lo='git log --date-order --pretty=format:"${_git_log_oneline_format}"'
+alias ${gprefix}lO='git log --date-order --pretty=format:"${_git_log_oneline_medium_format}"'
+alias ${gprefix}lg='git log --date-order --graph --pretty=format:"${_git_log_oneline_format}"'
+alias ${gprefix}lG='git log --date-order --graph --pretty=format:"${_git_log_oneline_medium_format}"'
+alias ${gprefix}lv='git log --date-order --show-signature --pretty=format:"${_git_log_fuller_format}"'
 alias ${gprefix}lc='git shortlog --summary --numbered'
 alias ${gprefix}lr='git reflog'
 
@@ -119,6 +126,7 @@ alias ${gprefix}ma='git merge --abort'
 alias ${gprefix}mc='git merge --continue'
 alias ${gprefix}mC='git merge --no-commit'
 alias ${gprefix}mF='git merge --no-ff'
+alias ${gprefix}ms='git merge --squash'
 alias ${gprefix}mS='git merge -S'
 alias ${gprefix}mv='git merge --verify-signatures'
 alias ${gprefix}mt='git mergetool'
@@ -128,7 +136,7 @@ alias ${gprefix}p='git push'
 alias ${gprefix}pf='git push --force-with-lease'
 alias ${gprefix}pF='git push --force'
 alias ${gprefix}pa='git push --all'
-alias ${gprefix}pA='git push --all && git push --tags'
+alias ${gprefix}pA='git push --all && git push --tags --no-verify'
 alias ${gprefix}pt='git push --tags'
 alias ${gprefix}pc='git push --set-upstream origin "$(git-branch-current 2>/dev/null)"'
 alias ${gprefix}pp='git pull origin "$(git-branch-current 2>/dev/null)" && git push origin "$(git-branch-current 2>/dev/null)"'
@@ -181,12 +189,13 @@ alias ${gprefix}Sx='git-submodule-remove'
 
 # Tag (t)
 alias ${gprefix}t='git tag'
+alias ${gprefix}tl='git tag --list --sort=-committerdate'
 alias ${gprefix}ts='git tag --sign'
 alias ${gprefix}tv='git verify-tag'
 alias ${gprefix}tx='git tag --delete'
 
 # Main working tree (w)
-alias ${gprefix}ws='git status --short'
+alias ${gprefix}ws='git status --short --branch'
 alias ${gprefix}wS='git status'
 alias ${gprefix}wd='git diff --no-ext-diff'
 alias ${gprefix}wD='git diff --no-ext-diff --word-diff'
@@ -210,11 +219,12 @@ alias ${gprefix}WX='git worktree remove --force'
 
 # Switch (y)
 alias ${gprefix}y='git switch' # requires Git 2.23
+alias ${gprefix}yc='git switch --create'
+alias ${gprefix}yd='git switch --detach'
 
 # Misc
 alias ${gprefix}..='cd "$(git-root || print .)"'
 alias ${gprefix}\?="git-alias-lookup ${gmodule_home}"
-alias ${gprefix}h='git help'
 
 # Cannot use anon function with local variables, because we're evaluating ${0}
 unset gmodule_home gprefix

@@ -1,7 +1,7 @@
 git
 ===
 
-Provides handy git aliases and functions.
+Provides handy Git aliases and functions.
 
 Many thanks to [Sorin Ionescu](https://github.com/sorin-ionescu) for the
 excellent original aliases.
@@ -20,6 +20,7 @@ Aliases
   * `Gbd` detaches *HEAD* at the tip of the current or given branch.
   * `Gbl` lists branches and their commits.
   * `GbL` lists local and remote branches and their commits.
+  * `Gbn` lists branches that do not contain a given commit.
   * `Gbm` renames a branch.
   * `GbM` renames a branch even if the new branch name already exists.
   * `GbR` resets a branch even if the branch name already exists.
@@ -35,7 +36,7 @@ Aliases
   * `Gc` records changes to the repository.
   * `Gca` commits all modified and deleted files.
   * `GcA` commits all modified and deleted files interactively.
-  * `Gcm` commits with the given message.
+  * `Gcm` commits with a given message.
   * `Gco` checks out a branch or paths to the working tree.
   * `GcO` checks out hunks from the index or the tree interactively.
   * `Gcf` amends the tip of the current branch reusing the same log message as *HEAD*.
@@ -69,6 +70,7 @@ Aliases
   * `Gdu` lists untracked files.
   * `Gdk` lists killed files.
   * `Gdi` lists ignored files.
+  * `GdI` lists commited files that would be ignored.
 
 ### Fetch
 
@@ -89,11 +91,17 @@ Aliases
   * `Ggv` displays lines not matching a pattern.
   * `Ggw` displays lines matching a pattern at word boundary.
 
+### Help
+
+  * `Gh` displays help information about Git.
+  * `Ghw` displays manual page for the command in the web browser.
+
 ### Index
 
   * `Gia` adds file contents to the index.
   * `GiA` adds file contents to the index interactively.
-  * `Giu` adds file contents to the index (updates only known files).
+  * `Giu` adds file contents to the index (updates all tracked files).
+  * `GiU` adds file contents to the index (updates all files).
   * `Gid` displays changes between the index and a named commit (diff).
   * `GiD` displays changes between the index and a named commit (word diff).
   * `Gir` resets the current *HEAD* to the specified state.
@@ -120,9 +128,10 @@ Aliases
   * `Gm` joins two or more development histories together.
   * `Gma` aborts the conflict resolution, and reconstructs the pre-merge state.
   * `Gmc` continues the merge after conflicts are resolved.
-  * `GmC` performs the merge but does not commit.
+  * `GmC` performs a merge but does not commit.
   * `GmF` creates a merge commit even if the merge could be resolved as a fast-forward.
-  * `GmS` performs the merge and GPG-signs the resulting commit.
+  * `Gms` performs a squash merge but does not commit.
+  * `GmS` performs a merge and GPG-signs the resulting commit.
   * `Gmv` verifies the GPG signature of the tip commit of the side branch being merged.
   * `Gmt` runs the merge conflict resolution tools to resolve conflicts.
 
@@ -172,12 +181,12 @@ Aliases
   * `GsS` stashes the working directory changes interactively.
   * `Gsw` stashes the working directory changes retaining the index.
   * `Gsi` stashes changes in the index retaining the working directory.
-  * `Gsu` unapplies (reverts) applied changes.
+  * `Gsu` undoes (reverses) applied changes.
 
 ### Submodule
 
   * `GS` initializes, updates, or inspects submodules.
-  * `GSa` adds given a repository as a submodule.
+  * `GSa` adds a given repository as a submodule.
   * `GSf` evaluates a shell command in each of checked out submodules.
   * `GSi` initializes submodules.
   * `GSI` initializes and clones submodules recursively.
@@ -190,6 +199,7 @@ Aliases
 ### Tag
 
   * `Gt` creates, lists, deletes or verifies a tag object signed with GPG.
+  * `Gtl` lists tags in reverse chronological order (by commit date).
   * `Gts` creates a GPG-signed tag.
   * `Gtv` verifies the GPG signature of tags.
   * `Gtx` deletes tags with given names.
@@ -222,12 +232,13 @@ Aliases
 ### Switch
 
   * `Gy` switches branches.
+  * `Gyc` creates a new branch with given name before switching to it.
+  * `Gyd` switches to a commit for inspection and discardable experiments.
 
 ### Misc
 
   * `G..` changes the current directory to the top level of the working tree.
-  * `G?` looks up the aliases defined here with the given regular expressions.
-  * `Gh` displays help information about Git
+  * `G?` looks up the aliases defined here with given regular expressions.
 
 Settings
 --------
@@ -238,7 +249,7 @@ used to generate all aliases:
 
     zstyle ':zim:git' aliases-prefix 'g'
 
-Add the zstyle to your `~/.zshrc` before where the module is initialized.
+Add the zstyle to your `~/.zshrc` before the module is initialized.
 
 Be careful if changing the prefix to lower case `g`, as the generated aliases
 can shadow [many](https://github.com/zimfw/git/issues/2) commands, like `gpt`
@@ -247,7 +258,7 @@ for the GUID partition table maintenance utility.
 Functions
 ---------
 
-  * `git-alias-lookup` lists the aliases defined here searching at the given path, by the given regular expressions.
+  * `git-alias-lookup` lists the aliases defined here searching at a given path, by given regular expressions.
   * `git-branch-current` displays the current branch.
   * `git-branch-delete-interactive` asks for confirmation to also delete the upstream remote branch(es).
   * `git-branch-remote-tracking` lists all local branches with none or given remote-tracking status

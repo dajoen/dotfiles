@@ -1,30 +1,4 @@
-#!/usr/bin/env zsh
-
-# XDG
 export XDG_CONFIG_HOME="$HOME/.config"
-export XDG_DATA_HOME="$XDG_CONFIG_HOME/local/share"
-export XDG_CACHE_HOME="$XDG_CONFIG_HOME/cache"
-
-# editor
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
 export EDITOR="nvim"
 export VISUAL="nvim"
-
-# zsh
-export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-export HISTFILE="$ZDOTDIR/.zhistory"    # History filepath
-export HISTSIZE=10000                   # Maximum events for internal history
-export SAVEHIST=10000                   # Maximum events in history file
-. /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-
-# Add support for go
-export GOPATH=$HOME/go
-path+=$GOPATH/bin
-# Add support for rust
-path+=$HOME/.cargo/bin
-# Add .local/bin to path
-path+=$HOME/.local/bin
-
-eval "$(rtx activate zsh)"
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-BAT_THEME=Nord
-RESTIC_PASSWORD_COMMAND="gopass cat backup_btc"

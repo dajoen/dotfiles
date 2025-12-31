@@ -31,12 +31,22 @@ The following key bindings are set in the main keymap:
     than the next.
   * CTRL-X CTRL-E edits the command line with an external editor.
 
+If the `zsh-users/zsh-history-substring-search` module is defined, which should be
+done at the bottom of your `~/.zimrc`, after the `zsh-users/zsh-syntax-highlighting`
+module, then this module will do a deferred binding of the following keys:
+
+  * UP or CTRL-P selects the previous command that contains what was typed.
+  * DOWN or CTRL-N selects the next command that contains what was typed.
+
 Settings
 --------
 
-This module also provides double-dot parent directory expansion. It can be
-enabled with:
+This module also provides double-dot parent directory expansion, which will turn
+a `.` typed after `..` into `/..` (e.g. `....` into `../../..`) so you don't
+need to type too many slashes and dots. Conversely, it will contract the last
+expansion when BACKSPACE is typed (e.g. `../../..`BACKSPACE into `../..`). It's
+disabled by default and can be enabled by adding:
 
     zstyle ':zim:input' double-dot-expand yes
 
-in your `~/.zshrc` before where the module is initialized.
+to your `~/.zshrc` before the module is initialized.

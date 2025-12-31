@@ -1,5 +1,6 @@
 # pack-refs with: peeled fully-peeled sorted 
-449426362ae9ab1d3536999209e9daaff6638afc refs/remotes/origin/main
+f7e78a44ab51391608a618b644fcabe9a4e14a66 refs/remotes/origin/main
+acde7bd582c3f359487055df0eb3dac8c1dd5eac refs/remotes/origin/pre-commit-ci-update-config
 4cedb782a124b0778b25722885801316dd7791fc refs/tags/v1.0.0
 ca17006cfd1b4c4f1c13470f091c55d4a448b7ff refs/tags/v1.0.1
 c09bc0888cf2d7d85453335e39dc6546a19aafeb refs/tags/v1.1.0
