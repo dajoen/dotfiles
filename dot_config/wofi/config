@@ -1,0 +1,7 @@
+width=400
+location=center
+show=drun
+prompt=Power
+filter_rate=100
+allow_markup=true
+
