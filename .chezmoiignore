@@ -1,2 +1,4 @@
 **/.git
 **/.git/**
+.config/zsh/.zim
+.config/zsh/.zim/**
