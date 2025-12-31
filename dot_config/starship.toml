@@ -11,7 +11,7 @@ success_symbol = "[➜](bold green)" # The "success_symbol" segment is being set
 # Disable the package module, hiding it from the prompt completely
 [package]
 disabled = true
-symbol = " "
+symbol = "📦 "
 
 [azure]
 disabled = false
@@ -28,7 +28,7 @@ disabled = false
 "gke_.*_(?P<var_cluster>[\\w-]+)" = "gke-$var_cluster"
 
 [directory]
-read_only = " "
+read_only = " 🔒"
 
 [docker_context]
 symbol = " "
@@ -55,10 +55,10 @@ symbol = " "
 symbol = " "
 
 [memory_usage]
-symbol = " "
+symbol = "󰍛 "
 
 [nim]
-symbol = " "
+symbol = "👑 "
 
 [nodejs]
 symbol = " "
