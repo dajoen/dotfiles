@@ -8,6 +8,11 @@
 # -----------------
 
 #
+# Completions
+#
+fpath=(${ZDOTDIR}/completions $fpath)
+
+#
 # History
 #
 
