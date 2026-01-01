@@ -111,3 +111,14 @@ HISTSIZE=100000
 SAVEHIST=100000
 # End of lines configured by zsh-newuser-install
 export GPG_TTY="$(tty)"
+
+#
+# Eza (ls replacement)
+#
+if (( ${+commands[eza]} )); then
+  alias ls='eza --icons --group-directories-first'
+  alias ll='eza --icons --group-directories-first -l'
+  alias la='eza --icons --group-directories-first -la'
+  alias lx='eza --icons --group-directories-first -l -s extension'
+  alias lr='eza --icons --group-directories-first -l --tree'
+fi
