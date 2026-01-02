@@ -73,6 +73,6 @@
   "custom/power": {
     "tooltip": false,
     "on-click": "~/.local/bin/powermenu",
-    "format": "襤"
+    "format": ""
   }
 }
