@@ -1,6 +1,6 @@
 @import 'mocha.css';
 
-/* Map Catppuccin Mocha palette to the semantic names used below */
+/* Map Catppuccin Mocha palette to semantic names */
 @define-color blur_background rgba(30, 30, 46, 0.3);
 @define-color blur_background8 rgba(30, 30, 46, 0.8);
 
@@ -62,202 +62,180 @@
 @define-color surface_variant @surface0;
 @define-color source_color @blue;
 
-@define-color icon_color #FFFFFF;
+@define-color icon_color #ffffff;
 @define-color border_color @secondary;
 @define-color background @surface;
 
+/* Base */
 * {
-    font-family: "FiraCode Nerd Font", sans-serif;
+    font-family: "FiraCode Nerd Font", "JetBrainsMono Nerd Font", sans-serif;
+    font-size: 13px;
+    min-height: 0;
     border: none;
-    border-radius: 0px;
+    border-radius: 0;
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.2);
     background: transparent;
-    transition-property: background-color;
-    transition-duration: .5s;
+    color: @text;
 }
 
-.modules-left {
-    margin: 6px 0px 6px 8px;
+window#waybar > box {
+    margin: 6px 8px;
 }
 
-.modules-right {
-    margin: 6px 8px 6px 0px;
+/* Generic pill styling */
+#workspaces button,
+#clock,
+#battery,
+#backlight,
+#network,
+#pulseaudio,
+#bluetooth,
+#tray,
+#disk,
+#memory,
+#cpu,
+#language,
+#custom-appmenu,
+#custom-exit,
+#window {
+    padding: 6px 12px;
+    margin: 4px 5px;
+    border-radius: 12px;
+    background: alpha(@surface0, 0.7);
+    color: @text;
+    border: 1px solid alpha(@overlay0, 0.65);
+    box-shadow: 0 4px 16px alpha(@crust, 0.45);
+    transition: all 0.2s ease;
 }
 
-.modules-center {
-    margin: 6px 0px 6px 0px;
+#tray {
+    padding: 4px 10px;
 }
 
 #workspaces {
-    margin: 0px 7px 0px 0px;
-    min-width: 210px;
+    margin-left: 6px;
 }
 
 #workspaces button {
-    padding: 0px 6px;
-    margin: 3px 3px;
-    border-radius: 8px;
-    color: @on_surface;
-    background-color: @background;
-    transition: all 0.3s ease-in-out;
-    border: 2px solid @primary;
-}
-
-#workspaces button.active {
-    color: @on_primary;
-    background: @primary;
-    border-radius: 12px;
-    transition: all 0.3s ease-in-out;
-    border-color: @primary;
-    min-width: 30px;
+    background: alpha(@surface0, 0.55);
+    color: @subtext1;
+    border-color: alpha(@overlay0, 0.4);
+    padding: 6px 10px;
+    margin: 4px 4px;
 }
 
 #workspaces button:hover {
-    color: @on_surface;
-    background: @primary_container;
-    border-radius: 15px;
-    border-color: @primary;
-    box-shadow: none;
+    background: alpha(@blue, 0.25);
+    color: @text;
+    border-color: alpha(@blue, 0.7);
 }
 
-tooltip {
-    border-radius: 10px;
-    background-color: @surface;
-    border: 2px solid @border_color;
-    padding: 5px;
-    margin: 0px;
+#workspaces button.active {
+    background: @blue;
+    color: @base;
+    border-color: alpha(@blue, 0.7);
 }
 
-tooltip label {
-    color: @on_surface;
+#workspaces button.urgent {
+    background: @red;
+    color: @base;
+    border-color: alpha(@red, 0.7);
 }
 
 #window {
-    background-color: @background;
-    margin: 3px 15px 3px 0px;
-    padding: 2px 10px 0px 10px;
-    border-radius: 8px;
-    color: @icon_color;
-    font-size: 16px;
-    font-weight: normal;
-    border: 2px solid @border_color;
+    min-width: 260px;
+    background: alpha(@surface0, 0.55);
+    border-color: alpha(@overlay0, 0.6);
+    color: @subtext1;
 }
 
-window#waybar.empty #window {
-    background-color: transparent;
+#window.focused {
+    color: @text;
+    border-color: alpha(@blue, 0.7);
 }
 
-#custom-appmenu {
-    background-color: @background;
-    font-size: 16px;
-    color: @on_surface;
-    border-radius: 8px;
-    padding: 3px 10px 3px 10px;
-    margin: 3px 10px 3px 0px;
-    border: 2px solid @border_color;
-    transition: all 0.3s ease-out;
-}
-
-#custom-appmenu:hover {
-    color: @on_surface;
-    background: @primary_container;
-    border-color: @primary;
-}
-
-#custom-exit {
-    margin: 0px 14px 0px 0px;
-    padding: 0px;
-    font-size: 20px;
-    color: @icon_color;
-}
-
-#clock {
-    background-color: @background;
-    font-size: 16px;
-    color: @on_surface;
-    border-radius: 8px;
-    padding: 1px 10px 0px 10px;
-    margin: 3px 0px 3px 0px;
-    border: 2px solid @border_color;
-    transition: all 0.3s ease-out;
-}
-
-#clock:hover {
-    color: @on_surface;
-    background: @primary_container;
-    border-color: @primary;
-}
-
-#pulseaudio,
-#network,
+#clock,
 #battery,
+#network,
+#pulseaudio,
+#bluetooth,
 #backlight,
-#bluetooth {
-    background-color: @background;
-    font-size: 16px;
-    color: @on_surface;
-    border-radius: 8px;
-    padding: 2px 10px 0px 10px;
-    margin: 3px 10px 3px 0px;
-    border: 2px solid @border_color;
-    transition: all 0.3s ease-out;
+#tray,
+#cpu,
+#memory,
+#disk,
+#language,
+#custom-exit {
+    background: alpha(@surface0, 0.7);
 }
 
-#pulseaudio:hover,
-#network:hover,
+#clock:hover,
 #battery:hover,
+#network:hover,
+#pulseaudio:hover,
+#bluetooth:hover,
 #backlight:hover,
-#bluetooth:hover {
-    color: @on_surface;
-    background: @primary_container;
-    border-color: @primary;
+#cpu:hover,
+#memory:hover,
+#disk:hover,
+#language:hover,
+#custom-exit:hover {
+    background: alpha(@blue, 0.22);
+    border-color: alpha(@blue, 0.7);
+    color: @text;
 }
 
 #pulseaudio.muted {
-    background-color: @on_primary_fixed;
-    color: @on_surface;
+    background: alpha(@overlay1, 0.35);
+    color: @base;
 }
 
 #battery.charging,
 #battery.plugged {
-    color: @on_surface;
-    background-color: @background;
-}
-
-@keyframes blink {
-    to {
-        background-color: @background;
-        color: @on_surface;
-    }
+    border-color: alpha(@green, 0.6);
+    color: @text;
 }
 
 #battery.critical:not(.charging) {
-    background-color: @error;
-    color: @on_error;
-    animation-name: blink;
-    animation-duration: 0.5s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
+    background: @red;
+    color: @base;
 }
 
-#tray {
-    padding: 0px 15px 0px 0px;
+#custom-appmenu {
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    border-color: alpha(@blue, 0.7);
 }
 
-#disk,
-#memory,
-#cpu,
-#language {
-    margin: 0px;
-    padding: 0px;
-    font-size: 16px;
-    color: @icon_color;
+#custom-appmenu:hover {
+    background: alpha(@blue, 0.3);
+    color: @base;
 }
 
-#language {
-    margin-right: 10px;
+#custom-exit {
+    padding: 6px 10px;
+    color: @red;
+    border-color: alpha(@red, 0.6);
+}
+
+#custom-exit:hover {
+    background: alpha(@red, 0.25);
+    color: @base;
+}
+
+#tray > * {
+    padding: 0 4px;
+}
+
+tooltip {
+    border-radius: 10px;
+    background-color: alpha(@surface0, 0.9);
+    border: 1px solid alpha(@overlay0, 0.65);
+    padding: 6px 10px;
+}
+
+tooltip label {
+    color: @text;
 }
