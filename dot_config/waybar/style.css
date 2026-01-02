@@ -5,7 +5,7 @@
 @define-color background @surface;
 
 * {
-    font-family: "FiraCode Nerd Font", "FiraCode Nerd Font Mono", "Fira Sans Semibold", "Font Awesome 7 Free", "Font Awesome 7 Brands", "Font Awesome 6 Free", "Font Awesome 6 Brands", FontAwesome, "Material Icons", Roboto, Helvetica, Arial, sans-serif;
+    font-family: "FiraCode Nerd Font", sans-serif;
     border: none;
     border-radius: 0px;
 }
