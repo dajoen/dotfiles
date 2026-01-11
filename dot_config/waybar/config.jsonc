@@ -1,12 +1,25 @@
 {
   "layer": "top",
   "position": "top",
-  "spacing": 0,
-
-  "modules-left": ["hyprland/workspaces"],
-  "modules-center": ["custom/music"],
-  "modules-right": ["pulseaudio", "backlight", "battery", "clock", "tray", "custom/lock", "custom/power"],
-
+  "margin-top": 10,
+  "margin-left": 10,
+  "margin-right": 10,
+  "height": 46,
+  "spacing": 8,
+  "modules-left": [
+    "hyprland/workspaces"
+  ],
+  "modules-center": [
+    "custom/music"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "clock",
+    "tray",
+    "bluetooth",
+    "custom/lock",
+    "custom/power"
+  ],
   "hyprland/workspaces": {
     "disable-scroll": true,
     "sort-by-name": true,
@@ -15,12 +28,10 @@
       "default": ""
     }
   },
-
   "tray": {
     "icon-size": 21,
     "spacing": 10
   },
-
   "custom/music": {
     "format": "  {}",
     "escape": true,
@@ -30,46 +41,36 @@
     "on-click": "playerctl play-pause",
     "max-length": 50
   },
-
   "clock": {
     "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
     "format-alt": " {:%d/%m/%Y}",
     "format": " {:%H:%M}"
   },
-
-  "backlight": {
-    "device": "intel_backlight",
-    "format": "{icon}",
-    "format-icons": ["", "", "", "", "", "", "", "", ""]
-  },
-
-  "battery": {
-    "states": {
-      "warning": 30,
-      "critical": 15
-    },
-    "format": "{icon}",
-    "format-charging": "",
-    "format-plugged": "",
-    "format-alt": "{icon}",
-    "format-icons": ["", "", "", "", "", "", "", "", "", "", "", ""]
-  },
-
   "pulseaudio": {
     "format": "{icon} {volume}%",
     "format-muted": "",
     "format-icons": {
-      "default": ["", "", " "]
+      "default": [
+        "",
+        "",
+        " "
+      ]
     },
     "on-click": "pavucontrol"
   },
-
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": "",
+    "format-off": "",
+    "interval": 30,
+    "on-click": "blueman-manager",
+    "format-no-controller": ""
+  },
   "custom/lock": {
     "tooltip": false,
     "on-click": "hyprlock",
     "format": ""
   },
-
   "custom/power": {
     "tooltip": false,
     "on-click": "~/.local/bin/powermenu",
