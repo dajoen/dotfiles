@@ -2,3 +2,7 @@
 **/.git/**
 .config/zsh/.zim
 .config/zsh/.zim/**
+
+# Ignore top-level dotfiles repo README (documentation only)
+/README.md
+README.md
