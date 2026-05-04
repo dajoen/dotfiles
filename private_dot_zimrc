@@ -20,7 +20,6 @@ zmodule termtitle
 zmodule utility
 zmodule asdf
 zmodule exa
-zmodule k
 zmodule fzf
 
 #
@@ -54,11 +53,12 @@ zmodule zsh-users/zsh-syntax-highlighting
 # Fish-like history search (up arrow) for Zsh.
 # zsh-users/zsh-history-substring-search must be sourced after zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
-# Fish-like autosuggestions for Zsh.
-zmodule zsh-users/zsh-autosuggestions
 # }}} End configuration added by Zim install
 
 zmodule kiesman99/zim-zoxide
 zmodule joke/zim-chezmoi
 zmodule joke/zim-github-cli
+# Fish-like autosuggestions for Zsh.
+# Must be last so ZSH_AUTOSUGGEST_MANUAL_REBIND=1 in .zshrc is valid.
+zmodule zsh-users/zsh-autosuggestions
 

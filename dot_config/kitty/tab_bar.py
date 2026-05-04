@@ -30,7 +30,6 @@ def draw_tab(
         screen.draw(' ')
         draw_title(draw_data, screen, tab, index)
         extra = screen.cursor.x - before - max_title_length
-        print("extra:%d" %(extra))
         if extra >= 0:
             screen.cursor.x -= extra + 3
             screen.draw('…')
