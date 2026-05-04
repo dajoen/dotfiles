@@ -8,10 +8,16 @@
 	default = current
 [init]
 	defaultBranch = main
+{{ if eq .chezmoi.os "darwin" -}}
 [credential]
 	credentialStore = keychain
-	helper = 
+	helper =
 	helper = /usr/local/bin/git-credential-manager
+{{ else -}}
+[credential]
+	credentialStore = secretservice
+	helper = /usr/local/bin/git-credential-manager
+{{ end -}}
 [commit]
 	gpgsign = true
 [advice]
