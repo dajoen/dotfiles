@@ -128,6 +128,8 @@ unset key
 
 eval "$(zoxide init zsh)"
 
+export GPG_TTY=$(tty)
+
 {{- if eq .chezmoi.os "linux" }}
 # Zellij auto-start
 eval "$(zellij setup --generate-auto-start zsh)"
