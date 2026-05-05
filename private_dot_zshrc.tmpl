@@ -126,6 +126,8 @@ for key ('^[[B' '^N' ${terminfo[kcud1]}) bindkey ${key} history-substring-search
 unset key
 # }}} End configuration added by Zim install
 
+eval "$(zoxide init zsh)"
+
 {{- if eq .chezmoi.os "linux" }}
 # Zellij auto-start
 eval "$(zellij setup --generate-auto-start zsh)"

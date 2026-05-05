@@ -55,7 +55,6 @@ zmodule zsh-users/zsh-syntax-highlighting
 zmodule zsh-users/zsh-history-substring-search
 # }}} End configuration added by Zim install
 
-zmodule kiesman99/zim-zoxide
 zmodule joke/zim-chezmoi
 zmodule joke/zim-github-cli
 # Fish-like autosuggestions for Zsh.
